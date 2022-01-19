@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 import { navigate } from "../navigationRef";
+import tracker from '../api/tracker';
+import axios from "axios";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -21,6 +23,14 @@ const authReducer = (state, action) => {
 const tryLocalSignin = (dispatch) => async () => {
   const token = await AsyncStorage.getItem("token");
   if (token) {
+    const AuthStr = 'Bearer '.concat(token);
+    console.log(AuthStr);
+    const res = await axios.get(`https://api.yelp.com/v3/businesses/search?limit=50&term='pasta'&location='san jose'`, {
+      headers: {
+        authorization: 'Bearer PzDfM_1S3RmBSESAHoI0nuPEdsYBWs0yzano33P-pVHmk-lgafYJApoD4rLxK2F5dASr1ipq8pA5sczkajHGbL2seMetfTdrnuk7Pj2NG2v65uUtl4HYN6EJ1jyqYXYx'
+      }
+    });
+    console.log(res);
     dispatch({ type: "signin", payload: token });
     navigate("TrackList");
   } else {
@@ -49,7 +59,7 @@ const signup = (dispatch) => async ({ email, password }) => {
 const signin = (dispatch) => async ({ email, password }) => {
   try {
     const response = await trackerApi.post("/Token", { user: email, password: password });
-    console.log(response);
+    // console.log(response);
     await AsyncStorage.setItem("token", response.data.Token);
     dispatch({ type: "signin", payload: response.data.Token });
     navigate("TrackList");
