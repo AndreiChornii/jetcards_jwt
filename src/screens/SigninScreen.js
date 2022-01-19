@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import AuthForm from '../components/AuthForm';
-import NavLink from '../components/NavLink';
 import { Context } from '../context/AuthContext';
+import NavLink from '../components/NavLink';
 
 const SigninScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(Context);
@@ -12,13 +12,13 @@ const SigninScreen = () => {
     <View style={styles.container}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
-        headerText="Sign In to Your Account"
+        headerText="JET CARDS Service - Sign in"
         errorMessage={state.errorMessage}
         onSubmit={signin}
-        submitButtonText="Sign In"
+        submitButtonText="SIGN IN"
       />
       <NavLink
-        text="Dont have an account? Sign up instead"
+        text="Forgot your Login or Password?"
         routeName="Signup"
       />
     </View>
@@ -31,10 +31,13 @@ SigninScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginBottom: 250,
+    flex: 1.0,
+    justifyContent: "center",
+    backgroundColor: "#fff",
+    padding: 20,
+    margin: 10,
   },
+
 });
 
 export default SigninScreen;
