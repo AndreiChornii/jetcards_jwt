@@ -25,12 +25,16 @@ const tryLocalSignin = (dispatch) => async () => {
   if (token) {
     const AuthStr = 'Bearer '.concat(token);
     console.log(AuthStr);
-    const res = await axios.get(`https://www.jetcs.co/api/Designs`, {
-      headers:{
-        Authorization: 'Bearer zNNTvu1NWo6iVnYqM5kuluUT8iqmkBR5WkloB7q2'
-      }
-    });
-    console.log(res);
+    try {
+      const res = await axios.get(`https://core.jetcs.co/api/Designs/`, {
+        headers: {
+          Authorization: AuthStr,
+        }
+      });
+      console.log(res);
+    } catch (err){
+      console.log(err);
+    }
     dispatch({ type: "signin", payload: token });
     navigate("TrackList");
   } else {
@@ -59,7 +63,7 @@ const signup = (dispatch) => async ({ email, password }) => {
 const signin = (dispatch) => async ({ email, password }) => {
   try {
     const response = await trackerApi.post("/Token", { user: email, password: password });
-    // console.log(response);
+    console.log(response);
     await AsyncStorage.setItem("token", response.data.Token);
     dispatch({ type: "signin", payload: response.data.Token });
     navigate("TrackList");
