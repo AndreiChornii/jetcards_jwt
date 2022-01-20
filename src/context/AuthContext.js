@@ -25,9 +25,9 @@ const tryLocalSignin = (dispatch) => async () => {
   if (token) {
     const AuthStr = 'Bearer '.concat(token);
     console.log(AuthStr);
-    const res = await axios.get(`https://api.yelp.com/v3/businesses/search?limit=50&term='pasta'&location='san jose'`, {
-      headers: {
-        authorization: 'Bearer PzDfM_1S3RmBSESAHoI0nuPEdsYBWs0yzano33P-pVHmk-lgafYJApoD4rLxK2F5dASr1ipq8pA5sczkajHGbL2seMetfTdrnuk7Pj2NG2v65uUtl4HYN6EJ1jyqYXYx'
+    const res = await axios.get(`https://www.jetcs.co/api/Designs`, {
+      headers:{
+        Authorization: 'Bearer zNNTvu1NWo6iVnYqM5kuluUT8iqmkBR5WkloB7q2'
       }
     });
     console.log(res);
