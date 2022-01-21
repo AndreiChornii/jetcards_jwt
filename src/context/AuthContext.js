@@ -14,7 +14,8 @@ const authReducer = (state, action) => {
     case "clear_error_message":
       return { ...state, errorMessage: "" };
     case "signout":
-      return { token: null, errorMessage: "" };
+      // return { token: null, errorMessage: "" };
+      return { ...state, errorMessage: "" };
     default:
       return state;
   }
@@ -24,7 +25,6 @@ const tryLocalSignin = (dispatch) => async () => {
   const token = await AsyncStorage.getItem("token");
   if (token) {
     const AuthStr = 'Bearer '.concat(token);
-    // console.log(AuthStr);
     let design_res = null;
     try {
       const res = await trackerApi.get(`/Designs`, {
@@ -32,15 +32,12 @@ const tryLocalSignin = (dispatch) => async () => {
           Authorization: AuthStr,
         }
       });
-      // dispatch({ type: "signin", payload: res.data });
-      // console.log(res.data);
       design_res = res;
     } catch (err){
       console.log(err);
     }
-    // console.log(global_res);
-    dispatch({ type: "signin", payload: token });
-    // dispatch({ type: "signin", payload: {token: token, design: design_res.data} });
+    // dispatch({ type: "signin", payload: token });
+    dispatch({ type: "signin", payload: token, payload: {design: design_res.data} });
     navigate("TrackList");
   } else {
     navigate("Signup");

@@ -1,12 +1,18 @@
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useContext } from 'react';
 import { View, StyleSheet, Text, Button, FlatList } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
+// import { Context as DataContext } from '../context/DataContext';
 // import ResolveAuthScreen from './ResolveAuthScreen';
 
 const TrackListScreen = ({ navigation }) => {
   const { state } = useContext(AuthContext);
-  // console.log(state.token_and_design.design);
-  // const design = state.token.design;
+  // const { state } = useContext(DataContext);
+  // console.log(state);
+  // const design = await AsyncStorage.getItem("design");
+  // console.log(JSON.parse(design));
+  console.log(state.token.design);
+  const design = state.token.design;
   // for (let index = 0; index < design.length; index++) {
   //   const element = design[index];
   //   console.log(design[index].ID);
@@ -16,7 +22,7 @@ const TrackListScreen = ({ navigation }) => {
   return (
     <>
       <Text style={{ fontSize: 48 }}>DesignListScreen</Text>
-      {/* <View>
+      <View>
         <FlatList 
           data={design}
           keyExtractor={designElement => designElement.ID}
@@ -29,7 +35,7 @@ const TrackListScreen = ({ navigation }) => {
             )}
           }
         />
-      </View> */}
+      </View>
       <Button
         title="Go to Design Detail"
         onPress={() => navigation.navigate('TrackDetail')}
