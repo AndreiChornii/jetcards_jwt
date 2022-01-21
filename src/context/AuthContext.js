@@ -24,18 +24,23 @@ const tryLocalSignin = (dispatch) => async () => {
   const token = await AsyncStorage.getItem("token");
   if (token) {
     const AuthStr = 'Bearer '.concat(token);
-    console.log(AuthStr);
+    // console.log(AuthStr);
+    let design_res = null;
     try {
-      const res = await axios.get(`https://core.jetcs.co/api/Designs/`, {
+      const res = await trackerApi.get(`/Designs`, {
         headers: {
           Authorization: AuthStr,
         }
       });
-      console.log(res);
+      // dispatch({ type: "signin", payload: res.data });
+      // console.log(res.data);
+      design_res = res;
     } catch (err){
       console.log(err);
     }
+    // console.log(global_res);
     dispatch({ type: "signin", payload: token });
+    // dispatch({ type: "signin", payload: {token: token, design: design_res.data} });
     navigate("TrackList");
   } else {
     navigate("Signup");
