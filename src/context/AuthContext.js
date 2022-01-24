@@ -33,11 +33,13 @@ const tryLocalSignin = (dispatch) => async () => {
         }
       });
       design_res = res;
-    } catch (err){
+    } catch (err) {
       console.log(err);
     }
     // dispatch({ type: "signin", payload: token });
-    dispatch({ type: "signin", payload: token, payload: {design: design_res.data} });
+    // if(!design_res){
+      dispatch({ type: "signin", payload: token, payload: { design: design_res.data } });
+    // }
     navigate("TrackList");
   } else {
     navigate("Signup");
@@ -67,7 +69,25 @@ const signin = (dispatch) => async ({ email, password }) => {
     const response = await trackerApi.post("/Token", { user: email, password: password });
     console.log(response);
     await AsyncStorage.setItem("token", response.data.Token);
-    dispatch({ type: "signin", payload: response.data.Token });
+
+    // const token = await AsyncStorage.getItem("token");
+    let design_res = null;
+    if (response.data.Token) {
+      const AuthStr = 'Bearer '.concat(response.data.Token);
+      try {
+        const res = await trackerApi.get(`/Designs`, {
+          headers: {
+            Authorization: AuthStr,
+          }
+        });
+        design_res = res;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    // dispatch({ type: "signin", payload: response.data.Token });
+    dispatch({ type: "signin", payload: response.data.Token, payload: { design: design_res.data } });
     navigate("TrackList");
   } catch (err) {
     console.log(err);
