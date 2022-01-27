@@ -36,10 +36,10 @@ const tryLocalSignin = (dispatch) => async () => {
     } catch (err) {
       console.log(err);
     }
-    dispatch({ type: "signin", payload: token });
-    // if(!design_res){
+    // dispatch({ type: "signin", payload: token });
+    if(design_res !== null){
       dispatch({ type: "signin", payload: token, payload: { design: design_res.data } });
-    // }
+    }
     navigate("TrackList");
   } else {
     navigate("Signin");
