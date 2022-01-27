@@ -7,18 +7,8 @@ import { Context as AuthContext } from '../context/AuthContext';
 
 const TrackListScreen = ({ navigation }) => {
   const { state } = useContext(AuthContext);
-  // const { state } = useContext(DataContext);
-  // console.log(state);
-  // const design = await AsyncStorage.getItem("design");
-  // console.log(JSON.parse(design));
-  console.log(state.token.design);
+  // console.log(state.token.design);
   const design = state.token.design;
-  // for (let index = 0; index < design.length; index++) {
-  //   const element = design[index];
-  //   console.log(design[index].ID);
-  // }
-  // console.log(design.ID);
-  // console.log(ResolveAuthScreen);
   return (
     <>
       <Text style={{ fontSize: 48 }}>DesignListScreen</Text>

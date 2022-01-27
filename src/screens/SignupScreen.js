@@ -12,9 +12,9 @@ const SignupScreen = ({ navigation }) => {
     <View style={styles.container}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
-        headerText="Sign Up for Tracker"
+        headerText="JET CARDS Service - Registration"
         errorMessage={state.errorMessage}
-        submitButtonText="Sign Up"
+        submitButtonText="SIGN UP"
         onSubmit={signup}
       />
       <NavLink
@@ -25,17 +25,17 @@ const SignupScreen = ({ navigation }) => {
   );
 };
 
-SignupScreen.navigationOptions = () => {
-  return {
-    header: () => false,
-  };
+SignupScreen.navigationOptions = {
+  header: () => false
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginBottom: 250,
+    flex: 1.0,
+    justifyContent: "center",
+    backgroundColor: "#fff",
+    padding: 20,
+    margin: 10,
   },
 });
 
