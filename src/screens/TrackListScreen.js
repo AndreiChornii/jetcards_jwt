@@ -8,7 +8,10 @@ import { Context as AuthContext } from '../context/AuthContext';
 const TrackListScreen = ({ navigation }) => {
   const { state } = useContext(AuthContext);
   // console.log(state.token.design);
-  const design = state.token.design;
+  // if(state.token.design !== null){
+    const design = state.token.design;
+  // }
+  
   return (
     <>
       <Text style={{ fontSize: 48 }}>DesignListScreen</Text>
