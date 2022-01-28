@@ -8,9 +8,10 @@ import { Context as AuthContext } from '../context/AuthContext';
 const TrackListScreen = ({ navigation }) => {
   const { state } = useContext(AuthContext);
   // console.log(state.token.design);
-  // if(state.token.design !== null){
-    const design = state.token.design;
-  // }
+  let design = null;
+  if(state.token !== null){
+    design = state.token.design;
+  }
   
   return (
     <>
