@@ -67,7 +67,7 @@ const signup = (dispatch) => async ({ email, password }) => {
 const signin = (dispatch) => async ({ email, password }) => {
   try {
     const response = await trackerApi.post("/Token", { user: email, password: password });
-    console.log(response);
+    // console.log(response);
     await AsyncStorage.setItem("token", response.data.Token);
 
     // const token = await AsyncStorage.getItem("token");
