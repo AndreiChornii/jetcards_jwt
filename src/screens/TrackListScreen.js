@@ -32,7 +32,7 @@ const TrackListScreen = ({ navigation }) => {
       </View>
       <Button
         title="Go to Design Detail"
-        onPress={() => navigation.navigate('TrackDetail')}
+        onPress={() => navigation.navigate('DesignDetail')}
       />
     </>
   );
