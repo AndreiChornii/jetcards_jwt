@@ -4,6 +4,7 @@ import { NavigationEvents } from 'react-navigation';
 import AuthForm from '../components/AuthForm';
 import { Context } from '../context/AuthContext';
 import NavLink from '../components/NavLink';
+import ExternalLink from '../components/ExternalLink';
 
 const SigninScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(Context);
@@ -17,10 +18,13 @@ const SigninScreen = () => {
         onSubmit={signin}
         submitButtonText="SIGN IN"
       />
-      <NavLink
+      {/* <NavLink
         text="Forgot your Login or Password?"
         routeName="Signup"
-      />
+      /> */}
+      <ExternalLink url="https://www.jetcs.co/registration/?ref=ReactApp">
+        Forgot your Login or Password?
+      </ExternalLink>
     </View>
   );
 };
